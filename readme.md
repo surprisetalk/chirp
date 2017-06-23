@@ -15,3 +15,4 @@ TODO
 
 - [Dozenal / Duodecimal / Base-12](https://en.wikipedia.org/wiki/Duodecimal)
 - [Music & Mathematics](https://en.wikipedia.org/wiki/Music_and_mathematics)
+- [Harmony Explained: Progress Towards A Scientific Theory of Music](https://arxiv.org/html/1202.4212v2)
