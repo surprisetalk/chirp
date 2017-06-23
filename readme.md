@@ -10,3 +10,8 @@ TODO: other possible names: croak, grunt, squawk, wheeze, mumble, growl, moo, ri
 ## TUTORIAL
 
 TODO
+
+## FURTHER READING
+
+- [Dozenal / Duodecimal / Base-12](https://en.wikipedia.org/wiki/Duodecimal)
+- [Music & Mathematics](https://en.wikipedia.org/wiki/Music_and_mathematics)
