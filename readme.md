@@ -15,6 +15,8 @@ TODO
 
 TODO: vertical
 TODO: numeric
+TODO: can be written as stringed-instrument tablature
+TODO: consistent operators that build on each other
 
 ### EASY TO WRITE
 
@@ -28,6 +30,11 @@ TODO: separate by "melodic-chain" rather than by pitch
 TODO:  ie group in as many tonal sections as you want
 TODO: encourages notes! great for capturing the *spirit* of the work
 TODO: coming soon: formal way of expressing timbre, and evolution thereof
+TODO: multiple ways to say things
+TODO:   eg duration as lines or operators
+TODO:   eg anchored/unanchored melodies
+TODO:   eg numerical or symbolic chords
+TODO: operators! eg repetition
 
 ### EASY TO TRANSPOSE
 
@@ -76,43 +83,59 @@ TODO:     ascending height options : _,.-~¬«=×*+°'^¨¯|
 TODO:     ascii options: ¸ ! " # $ % & ' () * + , - . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~ ¡ ¢ £ ¤ ¥ ¦ § ¨ © ª « ¬ ® ¯ ° ± ² ³ ´ µ ¶ · ¸ ¹ º » ¼ ½ ¾ ¿ × Ø – — ‘ ’ ‚ “ ” „ † ‡ • … 
 
     0 1 2 3 4 5 6 7 8 9 Ɛ ? 10 10 10 11 ...
-    _ , . ~ - = + × ° ' ¨ ^ ¯  |  _  ,  ...
     _ , . ~ ¬ = + * ° ' ¨ ^ ¯  |  _  ,  ...
+    
+TODO: what's the best way to communicate duration? and glissando?
+TODO:   i don't feel like all these weird bars are doing the job well
+TODO:     i like the idea of making multipliers of beat (in Hz) that change the duration by different multiples
+
+    ... 0.3 0.46 0.6 0.9 1.0 1.6 2.0 3.0 4.0 ... 8.0 ...
+    ...  «   <\   <   \   •   /   >   />  »  ... >>> ...
+    
+    'til next-note end-of-measure end-of-piece
+         :         ::             :::
+    
+    [•n] repeat every beat n-times
+    [<n] repeat every half-beat n-times
+    ...
+    {•n} repeat every measure n-times
+    {>n} repeat every other measure n-times
+    ...
+
+TODO: it's probably best to optimize for *paper & web* rather than *paper & plain-text*
 
 TODO: columns are "dimensions"
 TODO:   time column has header describing measure-length
+TODO:     make sure it's MEASURE length and not beat length
+TODO:       it should have its own column in case you need to vary it
 TODO:   pitch column has header describing pitch-basis (0 freq)
 TODO:   feel free to add additional things like vibrato and envelope modulation
 TODO:     for example, you may want to group intensity columns with different hands
 
-    =====================================================================
-    GLOBAL           TONE-GROUP       TONE-GROUP        TONE-GROUP
-    =====================================================================
-    time   vibrato   pitch intensity  pitch intensity   pitch wave
-    2.33Hz 5Hz       440Hz pp         440Hz pp          440Hz sgn(cos(x))
-    =====================================================================
-    0.0    5Hz       0_               0-                14_
-    0.1    ¦         ¦                ¦                 ¦
-    0.2    ¦         ¦                !                 !
-    0.3    ¦         ¦                0.                12_
-    0.4    ¦         0_=              ¦                 ¦
-    0.5    ¦         ¦                !                 !
-    0.6    ¦         ¦                0_                10_
-    0.7    ¦         ¦                ¦                 ¦
-    0.8    ¦         0_=*             !                 !
-    0.9    7Hz       ¦                0.                12_
-    0.Ɛ              ¦                ¦                 ¦
-    0.?              !                !                 !
-    ---------------------------------------------------------------------
-    1.0              0_=*             0-                14_
-    1.3              ¦                0-                14_
-    1.6              !                0-                14_
-    1.9                               !                 ! 
-    ---------------------------------------------------------------------
-    2.0              0_-*             0.                12_
-    2.3              ¦                0.                12_
-    2.6              !                0.                12_
-    2.9                               !                 !
-    ---------------------------------------------------------------------
+TODO: OOOOOOO you can make a tone-group for each string (eg guitar) and you have tabs! just put n (eg 6) tone-groups next to each other
 
-
+    =================================================================
+    GLOBAL              TONE-GROUP     TONE-GROUP   TONE-GROUP
+    =================================================================
+    time meas beat vibr pitch intens   pitch        pitch wave
+         .5Hz 2Hz  5Hz  440Hz pp       440Hz        440Hz sgn(cos(x))
+    =================================================================
+    0.0            5Hz  0_                   0¬     • 14_
+    0.16           ¦    ¦                    ¦
+    0.3            ¦    ¦                 0.        • 12_
+    0.46           ¦    ¦=                ¦
+    0.6            ¦    ¦              0_           • 10_
+    0.86           ¦    ¦              ¦
+    0.9            ¦    ¦*                0.        • 12_
+    0.Ɛ6           ¦    ¦                 ¦
+    -----------------------------------------------------------------
+    1.0            7Hz  0_=*                 0¬     • 4|_
+    1.3                 ¦                    0¬     • 4|_
+    1.6                 ¦                    0¬     > 4|_
+    1.9                                      ¦
+    -----------------------------------------------------------------
+    2.0                ,0=*               0.        • 2|_
+    2.3                 ¦                 0.        • 2|_
+    2.6                 ¦                 0.        > 2|_
+    2.9                                   ¦
+    -----------------------------------------------------------------
