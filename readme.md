@@ -1,7 +1,7 @@
 
 TODO: pretty, young-hearts-of-summer gif of humans & computer usage
 
-# QUACK NOTATION
+# CHIRP NOTATION
 
 TODO: version 1
 
@@ -83,7 +83,7 @@ TODO:     ascending height options : _,.-~¬«=×*+°'^¨¯|
 TODO:     ascii options: ¸ ! " # $ % & ' () * + , - . / : ; < = > ? @ [ \ ] ^ _ ` { | } ~ ¡ ¢ £ ¤ ¥ ¦ § ¨ © ª « ¬ ® ¯ ° ± ² ³ ´ µ ¶ · ¸ ¹ º » ¼ ½ ¾ ¿ × Ø – — ‘ ’ ‚ “ ” „ † ‡ • … 
 
     0 1 2 3 4 5 6 7 8 9 Ɛ ? 10 10 10 11 ...
-    _ , . ~ ¬ = + * ° ' ¨ ^ ¯  |  _  ,  ...
+    _ , . ¬ ~ = + * ° ' ¨ ^ ¯  |  _  ,  ...
     
 TODO: what's the best way to communicate duration? and glissando?
 TODO:   i don't feel like all these weird bars are doing the job well
@@ -94,6 +94,9 @@ TODO:     i like the idea of making multipliers of beat (in Hz) that change the 
     
     'til next-note end-of-measure end-of-piece
          :         ::             :::
+
+    'til next-note end-of-measure end-of-piece (legato/glissando)
+         ;         ;;             ;;;
     
     [•n] repeat every beat n-times
     [<n] repeat every half-beat n-times
@@ -114,28 +117,30 @@ TODO:     for example, you may want to group intensity columns with different ha
 
 TODO: OOOOOOO you can make a tone-group for each string (eg guitar) and you have tabs! just put n (eg 6) tone-groups next to each other
 
-    ==========================================================================
-    ¦ GLOBAL              ¦  TONE-GROUP   ¦  TONE-GROUP ¦  TONE-GROUP        ¦
-    ==========================================================================
-    ¦ time meas beat vibr ¦  pitch intens ¦  pitch      ¦  pitch wave        ¦
-    ¦      .5Hz 2Hz  5Hz  ¦  440Hz pp     ¦  440Hz      ¦  440Hz sgn(cos(x)) ¦
-    ==========================================================================
-    ¦ 0.0            5Hz  ¦  0_           ¦        0¬   ¦  • 14_             ¦
-    ¦ 0.16           |    ¦  |            ¦        |    ¦                    ¦
-    ¦ 0.3            |    ¦  |            ¦     0.      ¦  • 12_             ¦
-    ¦ 0.46           |    ¦  |=           ¦     |       ¦                    ¦
-    ¦ 0.6            |    ¦  |            ¦  0_         ¦  • 10_             ¦
-    ¦ 0.86           |    ¦  |            ¦  |          ¦                    ¦
-    ¦ 0.9            |    ¦  |*           ¦     0.      ¦  • 12_             ¦
-    ¦ 0.Ɛ6           |    ¦  |            ¦     |       ¦                    ¦
-    --------------------------------------------------------------------------
-    ¦ 1.0            7Hz  ¦  0_=*         ¦        0¬   ¦  • 4|_             ¦
-    ¦ 1.3                 ¦  |            ¦        0¬   ¦  • 4|_             ¦
-    ¦ 1.6                 ¦  |            ¦        0¬   ¦  > 4|_             ¦
-    ¦ 1.9                 ¦               ¦        |    ¦                    ¦
-    --------------------------------------------------------------------------
-    ¦ 2.0                 ¦ ,0=*          ¦     0.      ¦  • 2¯              ¦
-    ¦ 2.3                 ¦  |            ¦     0.      ¦  • 2¯              ¦
-    ¦ 2.6                 ¦  |            ¦     0.      ¦  > 2¯              ¦
-    ¦ 2.9                 ¦               ¦     |       ¦                    ¦
-    --------------------------------------------------------------------------
+BUG: too many ways to express things...
+
+    ===============================================================================================
+    ¦ GLOBAL              ¦  TONE-GROUP   ¦  TONE-GROUP ¦  TONE-GROUP        ¦  TONE-GROUP        ¦
+    ===============================================================================================
+    ¦ time meas beat vibr ¦  pitch intens ¦  pitch      ¦  pitch wave        ¦  pitch wave        ¦
+    ¦      .5Hz 2Hz  5Hz  ¦  440Hz pp     ¦  440Hz      ¦  440Hz sgn(cos(x)) ¦  440Hz sgn(sin(x)) ¦
+    ===============================================================================================
+    ¦ 0.0            5Hz  ¦  0_           ¦        0~   ¦  • 14_             ¦  >                 ¦
+    ¦ 0.16           |    ¦  |            ¦        |    ¦                    ¦                    ¦
+    ¦ 0.3            |    ¦  |            ¦     0.      ¦  • 12_             ¦                    ¦
+    ¦ 0.46           |    ¦  |=           ¦     |       ¦                    ¦                    ¦
+    ¦ 0.6            |    ¦  |            ¦  0_         ¦  • 10_             ¦  • 20_             ¦
+    ¦ 0.86           |    ¦  |            ¦  |          ¦                    ¦                    ¦
+    ¦ 0.9            |    ¦  |*           ¦     0.      ¦  • 12_             ¦  • 22_             ¦
+    ¦ 0.Ɛ6           |    ¦  |            ¦     |       ¦                    ¦                    ¦
+    -----------------------------------------------------------------------------------------------
+    ¦ 1.0            7Hz  ¦  0_=*         ¦        0~   ¦  • 4|_             ¦  />                ¦
+    ¦ 1.3                 ¦  |            ¦        0~   ¦  • 4|_             ¦                    ¦
+    ¦ 1.6                 ¦  |            ¦        0~   ¦  > 4|_             ¦                    ¦
+    ¦ 1.9                 ¦               ¦        |    ¦                    ¦ :: 0=*             ¦
+    -----------------------------------------------------------------------------------------------
+    ¦ 2.0                 ¦ ,0=*          ¦     0.      ¦  • 2¯              ¦  />                ¦
+    ¦ 2.3                 ¦  |            ¦     0.      ¦  • 2¯              ¦                    ¦
+    ¦ 2.6                 ¦  |            ¦  :: 0.      ¦  > 2¯              ¦                    ¦
+    ¦ 2.9                 ¦               ¦             ¦                    ¦  • 0=*             ¦
+    -----------------------------------------------------------------------------------------------
