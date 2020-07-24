@@ -286,11 +286,15 @@ TODO: Instruments and effects via functions!
 TODO: Also need note-generators functions, etc.
 TODO: Functions should be allowed to applied to pretty much anything.
 
-    [asdr 1 1 1 1] sine [' 1]
+    (asdr 1 1 1 1) sine [' 1]
 
 TODO: If we make this a functional queue language, then the rhythms are just function sugar and the pipes switch queue.
+TODO: Actually, it would probably work better if all the rhythms and pitches were just mixed together however and the "song" function figured out how to mash them.
+TODO:   This makes it so that we can use `' ' ' ' 0 0 0 0` and `' 0 | ' 0 | ' 0 | ' 0` interchangably.
+TODO:   Therefore a "song" would be a list of rhythms, pitches, and instrument/sequence markers that get folded together.
 
     '''' ;; a function that takes four "events" as inputs and produces a sequence
+    '''' ;; ACTUALLY just a rhythm value
     A#   ;; a value as pitch as note
     024  ;; a value as pitch as chord
     [0]  ;; a value as queue of pitch as note
