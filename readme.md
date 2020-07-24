@@ -144,3 +144,164 @@ BUG: too many ways to express things...
     ¦ 2.6                 ¦  |            ¦  :: 0.      ¦  > 2¯              ¦                    ¦
     ¦ 2.9                 ¦               ¦             ¦                    ¦  • 0= 0*           ¦
     -----------------------------------------------------------------------------------------------
+
+
+## MORE NOTES
+
+TODO: Start from scratch! We need a simple system.
+TODO: We need a notation of (1) pitch, (2) duration, (3) amplitude, and (4) repetition. That's it. Everything else is metadata.
+
+TODO: I kind of like the idea of separating rhythm from pitch.
+
+TODO: Pitches operate in a "pitch context" and durations operate in a "duration context".
+TODO: Duration contexts are in Hz, which determine the length of each beat.
+
+TODO: Each rhythm group represents a beat.
+
+    In traditional music terms:
+    ---------------------------
+    ''         | two half-notes
+    '''        | triplets
+    ''''       | four quarter-notes
+    '.'.       | two quarter-notes with rests afterward
+    '-'-       | two half-notes
+    '-''       | half-note then two quarter notes
+    '...       | quarter-note
+    '|=        | two whole notes (continued into the next bar)
+    '|=|=      | three whole notes (continued into the next bars)
+    '|=.       | a whole-note and a half
+    .--'|=...  | a half-note starting on the fourth beat of the measure
+    ['.]...    | an eight-note
+    ....|*4    | repeat beat 4 times
+    .|.|*3     | repeat two beats 3 times
+    '..^..'.'. | accent
+    
+    
+TODO: Rhythm groups are applied to pitches.
+
+    '-''      0 2 4 
+    '...      2
+    '-.-.-.-  2
+    ''''''''  0 2 4 5 7 9 B
+
+TODO: Columns can represent parallel parts!
+
+    | '-''      0 2 4          | '-......  2
+    | '...      2              | ''''''''  0 2 4 5 7 9 B
+    | '-......  2              | '-''      0     2   4
+    | ''''''''  0 2 4 5 7 9 B  | ...[.']               2
+    
+TODO: Tricky/fast parts can be broken out with brackets.
+
+    '''.
+    '    0
+         0
+    '.'' 0 2 4
+    
+TODO: Display for writing vs. reading needn't be the same. 
+TODO: To perform, it may be best to go vertical (receipt paper for physical and auto-scroller for screen). 
+TODO: Also add unique colors to each note for easier scanning.
+BUG: The headers need work.
+
+    | 2Hz       | 2Hz
+    | C:A%438Hz | C:A%438Hz
+    | 60dB      | 60dB
+    |           |
+    | '-''      | [''''].'.'''
+    |           |
+    | 0         | 0  2  4  5
+    |           |       7
+    | 2         |       9
+    | 4         | B    |0 
+    |           |
+    | '         | .
+    |           |
+    | 0         |
+
+TODO: Pitch headers.
+BUG: Hard to parse! Make atoms with prefixes that can be combined in any order.
+BUG: These suck.
+
+    | *:C               | Key of C in chromatic notation
+    | *:C:%A438Hz       | Key of C where A is 438Hz in chromatic notation
+    | *:C:eq            | Key of C in equal temperament in chromatic notation
+    | *:C:%A438Hz:just  | Key of C where A is 438Hz in just intonation and chromatic notation
+    | #:E4              | E4 guitar string in tab notation
+    | ^                 | Automation and effects levels
+    | !                 | Percussion.
+    | _                 | No pitch
+
+TODO: Chords!
+
+    '''''
+    0469
+    0_~+'
+    0M7
+    C#E#F#B#
+    CbEbFbBb
+
+TODO: Example: syncopation and repetition.
+
+    '..'..'..'..'..'   0 0 0 0 0 0
+    '..'..'..'..'..'   [0]::6
+    '..'..'..'..'..'   [0]::
+    '..'..'..'..'..'   |[0|]::
+
+TODO: Split rhythms.
+
+    ''.' [' 0 | '... 4] 6 9
+
+TODO: Accents/stacatto go in the rhythm sections, while expressions like legato and glissando go with the pitch.
+
+    | %:0       | trill
+    | &:0M      | roll
+    | (0 4 6)   | glide/slide
+    | 0 $1      | bend
+    | 0 /:1     | bend
+    | /:1 \:0   | unbend
+    | 0 <:1     | hammer on
+    | <:1 >:0   | hammer off
+
+
+TODO: Measures and parts.
+BUG: Change this to double-colon/double-pipe syntax.
+
+    | ''.' '.'' .... ....  | '... '... .... ....
+    | [0]::                | 0 0
+
+    | ''.' '.'' .... .... [0]:: | '... '... .... .... 0 0
+
+    | ''.' '.'' .... .... [0]::
+    | '... '... .... .... 0 0
+
+    | ''.' '.'' .... .... 
+      [0]::
+    | '... '... .... .... 
+      0 
+      0
+
+TODO: Tracks need to be able to have names that can be mixed for bus-like combinations.
+
+TODO: Instruments and effects via functions! 
+TODO: Also need note-generators functions, etc.
+TODO: Functions should be allowed to applied to pretty much anything.
+
+    [asdr 1 1 1 1] sine [' 1]
+
+TODO: If we make this a functional queue language, then the rhythms are just function sugar and the pipes switch queue.
+
+    '''' ;; a function that takes four "events" as inputs and produces a sequence
+    A#   ;; a value as pitch as note
+    024  ;; a value as pitch as chord
+    [0]  ;; a value as queue of pitch as note
+    [' 0 | .' 1] 
+    
+
+TODO: Consider making the pipe mean "and-then" and the colon mean "concurrently".
+TODO: Single pipe would mean next-beat for same instrument, and double-colon would mean concurrently with next instrument. Double pipe for next-beat for all instruments.
+TODO: I really like this!
+
+    || [' 0 : .' 1] | '' 2 2 
+    :: ' 0          | '' 4 4
+    || ' 2          | '' 2 2 
+    :: ' 0          | '' 4 4
