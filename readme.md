@@ -309,3 +309,15 @@ TODO: I really like this!
     :: ' 0          | '' 4 4
     || ' 2          | '' 2 2 
     :: ' 0          | '' 4 4
+    
+TODO: Actually, I don't like "next instrument" notation.
+TODO: It would be better if we optimized for arrangements.
+
+    bass
+    = sine |> octave -4
+
+    A
+    = bass  [ ' 0 ]
+    | flute [ ' 4 ]
+    
+    A*4
